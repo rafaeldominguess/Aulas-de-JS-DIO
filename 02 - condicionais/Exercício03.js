@@ -14,8 +14,8 @@
 */
 
 //Declaração  das variáveis:
-const valorProduto = 10;
-const condicaoDePagamento = 'Parcelado'; // opções: 'Débito' | 'Dinheiro' | 'Pix' | 'Parcelado'
+const valorProduto = 100;
+const condicaoDePagamento = 'Pix'; // opções: 'Débito' | 'Dinheiro' | 'Pix' | 'Parcelado'
 const numeroParcelas = 4; // usado se condicaoDePagamento === 'Parcelado'
 
 console.log('Valor do produto:', valorProduto);
