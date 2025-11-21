@@ -1,4 +1,7 @@
-
+function escrevaMeuNome(name){
+    return 'Meu nome é ' + name;
+}
+   
 function verificadorDeIdade(idade) {
     if (idade >= 18) {
         return 'maior de idade';
@@ -7,4 +10,4 @@ function verificadorDeIdade(idade) {
     }
 }
 
-console.log ('Você é ' + verificadorDeIdade(17));
+console.log (escrevaMeuNome('Rafael Domingues ') + 'e eu sou ' + verificadorDeIdade(17));
