@@ -3,6 +3,10 @@ function aplicarDesconto(valor, desconto) {
     return (valor - (valor * (desconto / 100)));
 }
 
+function aplicarJuros(valor, juros) {
+    return (valor + (valor * (juros / 100)));
+}
+
 function formaDePagamento() {
     if (condicaoDePagamento === 'Débito') {
         return (aplicarDesconto(valorProduto, 10));
@@ -11,12 +15,12 @@ function formaDePagamento() {
     } else if (condicaoDePagamento === 'Parcelado' && (numeroParcelas >= 1 && numeroParcelas <= 2)) {
         return valorProduto;
     } else {
-        return valorProduto + (valorProduto * 0.10);
+        return (aplicarJuros(valorProduto, 10));
     }
 }
 
 const valorProduto = 1000;
-const numeroParcelas = 2; // usado se condicaoDePagamento === 'Parcelado'
-const condicaoDePagamento = 'Débito'
+const numeroParcelas = 4; // usado se condicaoDePagamento === 'Parcelado'
+const condicaoDePagamento = 'Parcelado'
 
 console.log(formaDePagamento());
