@@ -7,21 +7,23 @@
 class Carro {
     marca;
     cor;
-    gastoMedioPorKM;
+    autonomia;
 
-    constructor(marca, cor, gastoMedioPorKM) {
+    constructor(marca, cor, autonomia) {
         this.marca = marca;
         this.cor = cor;
-        this.gastoMedioPorKM = gastoMedioPorKM;
+        this.autonomia = autonomia;
     }
 
-    valorGasto(distancia, precoCombustivel) {
-        return distancia * this.gastoMedioPorKM * precoCombustivel;
+    valorGasto(distancia, autonomia, precoCombustivel) {
+        const valorGasto = (distancia / autonomia) * precoCombustivel;
+        return valorGasto.toFixed(2)
     }
 }
 
-const ford = new Carro('fusion', 'prata', 1 / 12);
-const palio = new Carro('fiat', 'preto', 1/10 )
+const ford = new Carro('fusion', 'prata', 12);
+const palio = new Carro('fiat', 'preto',  10 );
 
-console.log(ford.valorGasto(100,5.50));
-console.log(palio.valorGasto(100,5.50))
+console.log(ford, `Valor Gasto na Viagem: ${ford.valorGasto(100,12,5.50)}`);
+console.log(palio, `Valor Gasto na Viagem: ${palio.valorGasto(100,10,5.50)}`);
+
