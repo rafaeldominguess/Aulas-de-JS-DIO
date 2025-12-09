@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BarberTech</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="bg-image"></div>
+
+    <nav class="navbar">
+        <div class="logo">Barber <span>Tech</span></div>
+        <a href="login.html" class="btn-outline">Área do Dono</a>
+    </nav>
+
+    <main class="hero">
+        <h1>O Estilo Que <br>Você Merece.</h1>
+        <p style="color:#ccc; font-size:1.2rem; margin-bottom:2rem;">Gestão profissional, cortes impecáveis e a experiência que você procura.</p>
+        
+        <button onclick="abrirModal()" class="btn-primary" style="padding: 15px 40px; font-size: 1.1rem;">
+            AGENDAR HORÁRIO
+        </button>
+    </main>
+
+    <div id="meuModal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="close-btn" onclick="fecharModal()">&times;</span>
+            <h2 style="text-align:center; margin-bottom:20px; color:white;">Novo Agendamento</h2>
+            
+            <form onsubmit="event.preventDefault(); alert('Solicitação enviada!'); fecharModal();">
+                <div class="form-group">
+                    <label>Seu Nome</label>
+                    <input type="text" required placeholder="Digite seu nome">
+                </div>
+                <div class="form-group">
+                    <label>Data</label>
+                    <input type="date" required class="date">
+                </div>
+                <div class="form-group">
+                    <label>Serviço</label>
+                    <select>
+                        <option>Corte de Cabelo - R$45</option>
+                        <option>Barba - R$30</option>
+                        <option>Completo - R$70</option>
+                    </select>
+                </div>
+                <button class="btn-primary" style="width:100%; margin-top:10px;">CONFIRMAR</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Função para abrir
+        function abrirModal() {
+            const modal = document.getElementById('meuModal');
+            modal.style.display = 'flex'; // Torna visível
+        }
+
+        // Função para fechar
+        function fecharModal() {
+            const modal = document.getElementById('meuModal');
+            modal.style.display = 'none'; // Esconde
+        }
+
+        // Fecha se clicar fora da caixa branca
+        window.onclick = function(event) {
+            const modal = document.getElementById('meuModal');
+            if (event.target == modal) {
+                fecharModal();
+            }
+        }
+    </script>
+</body>
+</html>

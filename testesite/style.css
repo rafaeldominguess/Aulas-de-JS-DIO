@@ -1,0 +1,490 @@
+:root {
+    --primary: #ffc107;          /* Amarelo Ouro (Identidade) */
+    --primary-hover: #e0a800;
+    --dark-bg: #121214;          /* Fundo Global */
+    --dark-surface: #202024;     /* Sidebar / Filtros */
+    --dark-card: #29292e;        /* Cards */
+    --text-white: #e1e1e6;
+    --text-gray: #a8a8b3;
+    
+    /* Cores Funcionais */
+    --success: #04d361;          /* Verde (Confirmar) */
+    --info: #2196f3;             /* Azul (Info) */
+    --danger: #f75a68;           /* Vermelho (Cancelar) */
+    --warn: #ffc107;             /* Amarelo (Pendente) */
+    --purple: #9c27b0;           /* Roxo (Meta) */
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+
+body { background-color: var(--dark-bg); color: var(--text-white); height: 100vh; overflow: hidden; }
+
+/* ===========================
+   LAYOUT & SIDEBAR
+=========================== */
+.dashboard-container { display: flex; height: 100vh; }
+
+.sidebar {
+    width: 260px; background: var(--dark-surface); border-right: 1px solid rgba(255,255,255,0.05);
+    display: flex; flex-direction: column; padding: 30px 20px;
+}
+.sidebar h2 { font-size: 1.5rem; margin-bottom: 50px; letter-spacing: 1px; text-transform: uppercase; }
+.sidebar h2 span { color: var(--primary); }
+
+.menu-item {
+    padding: 16px; color: var(--text-gray); border-radius: 8px; margin-bottom: 8px;
+    cursor: pointer; transition: 0.2s; font-size: 0.95rem; font-weight: 500;
+}
+.menu-item:hover, .menu-item.active { background: rgba(255, 193, 7, 0.1); color: var(--primary); }
+.menu-item.logout { margin-top: auto; color: var(--danger);  }
+.menu-item.logout:hover { background: rgba(247, 90, 104, 0.1); }
+
+.main-content { flex: 1; padding: 40px; overflow-y: auto; background: var(--dark-bg); }
+
+/* Animação das Abas */
+.tab-content { display: none; animation: fadeUp 0.4s ease; }
+.tab-content.active { display: block; }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+/* ===========================
+   HEADER & FILTROS
+=========================== */
+.header-dash { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 30px; }
+.header-dash h1 { font-size: 2rem; font-weight: 600; margin-bottom: 5px; }
+.header-dash span { color: var(--text-gray); font-size: 0.9rem; }
+
+.filter-wrapper { display: flex; flex-direction: column; align-items: flex-end; gap: 5px; min-width: 250px; }
+.filter-label { font-size: 0.75rem; color: var(--text-gray); text-transform: uppercase; letter-spacing: 0.5px; }
+.date-filter-container { 
+    display: flex; align-items: center; justify-content: start; gap:10px; background: var(--dark-surface); 
+    padding: 5px; border-radius: 50px; border: 1px solid rgba(255,255,255,0.1);
+    min-width: 250px;
+}
+
+.input-transparent { 
+    background: transparent; border: none; color: white; padding: 8px 15px; outline: none; 
+    font-size: 0.9rem; color-scheme: dark; 
+}
+.btn-icon { 
+    background:rgba(255, 255, 255, 0.089) ; border: none; width: 36px; height: 36px; border-radius: 50%; 
+    cursor: pointer; display: flex; align-items: center; justify-content: center; transition: 0.2s; color: black;
+}
+.btn-icon:hover { transform: scale(1.1); }
+.btn-ghost { background: transparent; border: none; color: var(--text-gray); margin-left: 5px; cursor: pointer; }
+.btn-ghost:hover { color: var(--danger); }
+
+/* ===========================
+   CARDS DE MÉTRICAS
+=========================== */
+.stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 24px; margin-bottom: 30px; }
+.stat-card {
+    background: var(--dark-card); padding: 25px; border-radius: 16px;
+    display: flex; align-items: center; gap: 20px; border: 1px solid rgba(255,255,255,0.02);
+}
+.icon-box { width: 50px; height: 50px; background: rgba(255,255,255,0.05); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; }
+.highlight .icon-box { background: rgba(255, 193, 7, 0.15); color: var(--primary); }
+.icon-box.blue { background: rgba(33, 150, 243, 0.15); color: var(--info); }
+.icon-box.purple { background: rgba(156, 39, 176, 0.15); color: var(--purple); }
+.stat-card .number { font-size: 1.8rem; font-weight: 700; margin-top: 5px; }
+
+/* ===========================
+   GRÁFICOS, TABELAS & BADGES
+=========================== */
+.chart-container, .table-container {
+    background: var(--dark-card); padding: 25px; border-radius: 16px;
+    margin-bottom: 30px; border: 1px solid rgba(255,255,255,0.02);
+}
+table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+th { text-align: left; padding: 15px; color: var(--text-gray); font-size: 0.75rem; text-transform: uppercase; border-bottom: 1px solid #333; }
+td { padding: 20px 15px; border-bottom: 1px solid rgba(255,255,255,0.03); font-size: 0.9rem; }
+.time-badge { background: rgba(255,255,255,0.05); padding: 4px 10px; border-radius: 6px; font-family: monospace; }
+
+.status { padding: 6px 14px; border-radius: 50px; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; }
+.status.confirmado { background: rgba(4, 211, 97, 0.15); color: var(--success); }
+.status.pendente { background: rgba(255, 193, 7, 0.15); color: var(--warn); }
+.status.concluido { background: rgba(33, 150, 243, 0.15); color: var(--info); }
+.status.cancelado { background: rgba(247, 90, 104, 0.15); color: var(--danger); }
+
+/* ===========================
+   ABA AGENDAMENTOS (CARDS)
+=========================== */
+.stat-card-small {
+    background: var(--dark-card); padding: 15px; border-radius: 12px;
+    text-align: center; border: 1px solid rgba(255,255,255,0.05);
+}
+.toolbar { display: flex; gap: 15px; margin-bottom: 20px; flex-wrap: wrap; }
+.search-box {
+    flex: 1; display: flex; align-items: center; background: var(--dark-surface);
+    border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 0 10px;
+}
+.tabs-internal { display: flex; gap: 10px; margin-bottom: 25px; }
+.tab-btn {
+    background: transparent; border: none; color: var(--text-gray); padding: 8px 16px;
+    border-radius: 20px; cursor: pointer; transition: 0.3s;
+}
+.tab-btn.active { background: var(--primary); color: #000; font-weight: bold; }
+
+.appointments-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+
+/* Design do Card */
+.app-card {
+    background: var(--dark-card); border: 1px solid rgba(255,255,255,0.05);
+    border-radius: 16px; padding: 20px; display: flex; flex-direction: column; gap: 15px;
+    transition: transform 0.2s;
+}
+.app-card:hover { border-color: rgba(255,255,255,0.1); transform: translateY(-2px); }
+
+.app-header { display: flex; justify-content: space-between; align-items: start; }
+.user-info { display: flex; gap: 12px; align-items: center; }
+.avatar {
+    width: 45px; height: 45px; background: #333; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--primary); font-weight: bold; border: 1px solid rgba(255, 193, 7, 0.2);
+}
+.user-details h4 { font-size: 1rem; color: white; margin-bottom: 2px; }
+.user-details span { font-size: 0.8rem; color: var(--text-gray); }
+
+.app-body { background: rgba(0,0,0,0.2); padding: 15px; border-radius: 10px; }
+.app-row { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 0.9rem; }
+.price { color: var(--primary) !important; font-weight: bold; }
+
+/* Botões de Ação */
+.app-footer { display: flex; gap: 10px; margin-top: auto; }
+
+/* Botão Confirmar (Verde) */
+.btn-confirm {
+    flex: 1; padding: 10px; border-radius: 8px; font-size: 0.85rem;
+    background: var(--success); color: white; border: none; font-weight: bold; cursor: pointer; transition: 0.2s;
+}
+.btn-confirm:hover { filter: brightness(0.9); }
+
+/* Botão Concluir (Amarelo - Igual a referência) */
+.btn-complete {
+    flex: 1; padding: 10px; border-radius: 8px; font-size: 0.85rem;
+    background: var(--primary); color: black; border: none; font-weight: bold; cursor: pointer; transition: 0.2s;
+}
+.btn-complete:hover { filter: brightness(0.9); }
+
+/* Botão Finalizado */
+.btn-disabled {
+    flex: 1; padding: 10px; border-radius: 8px; font-size: 0.85rem;
+    background: rgba(255,255,255,0.1); color: #666; border: none; font-weight: bold; cursor: not-allowed;
+}
+.btn-icon-only { 
+    width: 40px; background: rgba(255,255,255,0.1); border:none; border-radius: 8px; 
+    color: white; cursor: pointer; display: flex; align-items: center; justify-content: center;
+}
+
+/* ===========================
+   ABA FINANCEIRO (ESTILOS)
+=========================== */
+.period-filter {
+    display: flex; background: var(--dark-surface); padding: 5px;
+    border-radius: 50px; border: 1px solid rgba(255,255,255,0.1); gap: 5px;
+}
+.period-btn {
+    background: transparent; border: none; color: var(--text-gray);
+    padding: 6px 16px; border-radius: 20px; cursor: pointer; font-size: 0.85rem; font-weight: 500; transition: 0.3s;
+}
+.period-btn:hover { color: white; }
+.period-btn.active { background: var(--dark-card); color: var(--primary); font-weight: bold; border: 1px solid rgba(255,255,255,0.05); }
+
+/* Barra de Meta */
+.progress-container { width: 100%; background: rgba(255,255,255,0.1); height: 8px; border-radius: 10px; margin-top: 10px; overflow: hidden; }
+.progress-bar { height: 100%; background: var(--primary); width: 0%; transition: width 1s ease-in-out; border-radius: 10px; }
+.meta-text { font-size: 0.8rem; color: var(--text-gray); margin-top: 5px; display: flex; justify-content: space-between; }
+
+/* Botão Genérico */
+.btn-primary { 
+    background: var(--primary); border: none; padding: 8px 16px; border-radius: 6px; 
+    font-weight: bold; cursor: pointer; color: black; transition: 0.3s;
+}
+
+:root {
+    --primary: #ffc107;          /* Amarelo Ouro */
+    --primary-hover: #e0a800;
+    --dark-bg: #121214;          /* Fundo */
+    --text-white: #e1e1e6;
+    --text-gray: #a8a8b3;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+
+body { background-color: var(--dark-bg); color: var(--text-white); height: 100vh; overflow: hidden; }
+
+/* IMAGEM DE FUNDO */
+.bg-image {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
+    background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.95)), 
+                url('https://images.unsplash.com/photo-1585747860715-2ba37e788b70?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+    background-size: cover; background-position: center;
+}
+
+/* NAVBAR (Cabeçalho) */
+.navbar { 
+    position: absolute; top: 0; width: 100%; padding: 1.5rem 3rem; 
+    display: flex; justify-content: space-between; align-items: center; 
+}
+.logo { font-size: 1.5rem; font-weight: bold; text-transform: uppercase; color: white; }
+.logo span { color: var(--primary); }
+
+.btn-outline { 
+    border: 1px solid rgba(255,255,255,0.3); padding: 8px 20px; 
+    border-radius: 50px; color: white; text-decoration: none; transition: 0.3s;
+}
+.btn-outline:hover { border-color: var(--primary); color: var(--primary); }
+
+/* HERO (Centro da Tela) */
+.hero { 
+    height: 100vh; display: flex; flex-direction: column; 
+    justify-content: center; align-items: center; text-align: center; 
+}
+.hero h1 { font-size: 3rem; margin-bottom: 1rem; line-height: 1.2;text-transform: uppercase }
+.hero p { color: #ccc; font-size: 2rem; margin-bottom: 2rem; max-width: 600px; }
+.hero h2 { font-size: 4rem; margin-bottom: 1rem; line-height: 1.2;text-transform: uppercase }
+
+/* BOTÃO PRINCIPAL */
+.btn-primary { 
+    background: var(--primary); border: none; padding: 15px 40px; border-radius: 50px; 
+    font-weight: bold; cursor: pointer; color: black; font-size: 1.1rem; text-decoration: none; 
+    transition: transform 0.2s;
+}
+.btn-primary:hover { transform: scale(1.05); background: var(--primary-hover); }
+
+/* MODAL (Agendamento) */
+.modal-overlay {
+    display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.8); backdrop-filter: blur(15px); z-index: 1000;
+    justify-content: center; align-items: center;
+}
+.modal-content {
+    background: #939394; padding: 2rem; border-radius: 16px; width: 90%; max-width: 450px;
+    border: 1px solid rgba(255,255,255,0.1); position: relative;
+}
+.form-group { margin-bottom: 15px; text-align: left; }
+.form-group label { display: block; margin-bottom: 5px; color: #aaa; font-size: 0.9rem; }
+.form-group input, .form-group select {
+    width: 100%; padding: 10px; background: rgba(0,0,0,0.3); 
+    border: 1px solid #444; border-radius: 6px; color: white;
+}
+.close-btn { position: absolute; top: 15px; right: 20px; font-size: 1.5rem; cursor: pointer; color: #888; }
+
+/* =========================================
+   ESTILOS DO MODAL (ADICIONE NO FINAL DO CSS)
+========================================= */
+.modal-overlay {
+    display: none; /* Começa escondido */
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(29, 29, 29, 0.8); /* Fundo escuro */
+    backdrop-filter: blur(2px);
+    z-index: 9999; /* Garante que fique na frente de tudo */
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: #2c2c2c;
+    padding: 30px;
+    border-radius: 16px;
+    width: 90%;
+    max-width: 450px;
+    border: 2px solid rgb(85, 85, 85);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+    position: relative;
+    animation: zoomIn 0.3s ease;
+}
+
+@keyframes zoomIn {
+    from { transform: scale(0.9); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+/* Inputs do Modal */
+.form-group { margin-bottom: 15px; text-align: left; }
+.form-group label { display: block; color: #ffffff; margin-bottom: 5px; font-size: 1.2rem; }
+.form-group input, .form-group select {
+    width: 100%; padding: 12px;
+    background: rgba(104, 104, 104, 0.3);
+    border: 1px solid #727171; border-radius: 8px;
+    color: rgb(255, 255, 255); outline: none;
+    font-weight: 500; font-size: 0.9rem;
+}
+::placeholder{
+    color: rgb(194, 194, 194);
+}
+.form-group select {
+    background-color: rgba(104, 104, 104, 0.3);
+}
+
+.close-btn {
+    position: absolute; top: 15px; right: 20px;
+    font-size: 1.5rem; color: #2e2e2e; cursor: pointer;
+}
+.close-btn:hover { color: rgb(255, 255, 255); }
+
+/* =======================================================
+   CORREÇÃO DE BUGS VISUAIS (FUNDO BRANCO)
+======================================================= */
+
+/* 1. Força o calendário e ícones do sistema a serem escuros */
+:root {
+    color-scheme: dark;
+}
+
+/* 2. Corrige o fundo branco das opções do <select> (Lista suspensa) */
+select option {
+    background-color: var(--dark-surface);
+    color: white;
+    padding: 10px;
+    
+    
+}
+
+/* 3. Garante que ao clicar (focar), o fundo continue escuro */
+input:focus, select:focus, textarea:focus {
+    background-color: rgba(32, 32, 36, 1) !important; /* Força cor escura sólida */
+    color: white !important;
+    border-color: var(--primary);
+    outline: none;
+    
+    
+}
+
+/* 4. Correção para o Autocomplete do Google Chrome (Aquele fundo azul/branco automático) */
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px var(--dark-surface) inset !important;
+    -webkit-text-fill-color: white !important;
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+/* 5. Correção específica para inputs de data que ficam brancos */
+::-webkit-calendar-picker-indicator {
+    filter: invert(1); /* Inverte a cor do ícone do calendário para branco */
+    cursor: pointer;
+}
+
+
+/* =======================================================
+   CORREÇÃO DO CALENDÁRIO (BRANCO E VISÍVEL)
+======================================================= */
+
+/* Afeta tanto o filtro do Admin quanto o modal de Agendamento */
+input[type="date"] {
+    background-color: rgba(104, 104, 104, 0.3) !important; 
+    color: #fffbfb !important;            
+    border-radius: 6px;
+    padding: 8px 12px;
+    
+    /* MÁGICA: Isso força o ícone do calendário e a janelinha a serem CLAROS */
+    color-scheme: light; 
+}
+
+/* Remove a transparência antiga se estiver conflitando */
+.date-filter-container input {
+    background: #ffffff00 !important;
+}
+
+/* =======================================================
+   RESPONSIVIDADE (MODO CELULAR) - COLE NO FINAL DO CSS
+======================================================= */
+
+@media (max-width: 768px) {
+    /* 1. Muda o layout de Lado-a-Lado para Coluna */
+    .dashboard-container {
+        flex-direction: column;
+        height: auto; /* Remove altura fixa */
+        overflow-y: auto; /* Permite rolagem na página toda */
+    }
+
+    /* 2. Ajusta a Barra Lateral (Agora fica no topo) */
+    .sidebar {
+        width: 100%;
+        height: auto;
+        padding: 15px;
+        border-right: none;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .sidebar h2 {
+        font-size: 1.2rem;
+        margin-bottom: 15px;
+        text-align: center;
+    }
+
+    /* Menu vira uma lista horizontal com rolagem */
+    .sidebar nav {
+        display: flex;
+        gap: 10px;
+        overflow-x: auto; /* Rolagem lateral se precisar */
+        padding-bottom: 5px;
+    }
+
+    .menu-item {
+        font-size: 0.85rem;
+        padding: 8px 12px;
+        white-space: nowrap; /* Não quebra linha */
+        margin-bottom: 0;
+    }
+
+    /* 3. Área Principal */
+    .main-content {
+        padding: 20px 15px; /* Menos preenchimento */
+        height: auto;
+    }
+
+    /* 4. Cabeçalho e Filtros */
+    .header-dash {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+    
+    .filter-wrapper {
+        width: 100%;
+        align-items: flex-start;
+    }
+
+    .date-filter-container {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    /* 5. Cards Empilhados (Um embaixo do outro) */
+    .stats-grid, .appointments-grid {
+        grid-template-columns: 1fr; /* 1 Coluna só */
+        gap: 15px;
+    }
+
+    /* 6. Tabela com Rolagem (Para não estourar a tela) */
+    .table-container {
+        overflow-x: auto; /* Cria barra de rolagem horizontal na tabela */
+    }
+    
+    table {
+        min-width: 600px; /* Garante que a tabela não esmague */
+    }
+
+    /* 7. Modal (Janela de Agendamento) */
+    .modal-content {
+        width: 75%; /* Ocupa quase toda a tela */
+        padding: 20px;
+    }
+    
+    /* 8. Ajustes de Fonte */
+    h1 { font-size: 1.5rem; }
+    .stat-card .number { font-size: 1.5rem; }
+
+    .hero{
+        height: 800px;
+    }
+    
+   
+}
+
+
+
