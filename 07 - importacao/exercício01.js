@@ -14,10 +14,12 @@ const { gets, print } = require('./funcoes_auxiliares01');
 
 const mediaNotas = gets();
 
-if (mediaNotas < 5){
+if (mediaNotas < 5 && mediaNotas >= 0) {
     print('Reprovado');
-} else if (mediaNotas >= 5 && mediaNotas < 7)  {
+} else if (mediaNotas >= 5 && mediaNotas < 7) {
     print('Recuperação');
+} else if (mediaNotas >= 7 && mediaNotas <= 10){
+    print('Aprovado')
 } else {
-    print('Apovado')
+    print('Número inválido')
 }
