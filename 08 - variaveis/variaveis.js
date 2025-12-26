@@ -24,3 +24,10 @@ const var3 = 'teste';
 console.log(var1);
 console.log(var2);
 console.log(var3);
+
+
+//Convenções 
+
+//começar com letras minúsculas, $, _.
+
+// Ex: const testeVariavel, const teste, const $teste, const _teste, const TESTE.
