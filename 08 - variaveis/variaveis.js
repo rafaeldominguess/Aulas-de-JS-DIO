@@ -7,12 +7,15 @@
 var var1 = 10;
 var1 = 20;
 
+
 //Se restringe a qualquer bloco, só poder ser invocada dentro do bloco
 //O valor pode ser retribuido.
 //Pode receber outro valor.
 let var2 = 20;
 var2 = 10;
 
+
+//Se restringe a qualquer bloco, só poder ser invocada dentro do bloco
 //Basicamente igual ao let
 //Porém não pode receber retribuição de valor 
 // se foi declarado não pode receber outro valor.
