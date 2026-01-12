@@ -1,4 +1,4 @@
-//While simulando um personagem tomando poção de vida
+//For simulando um personagem tomando poção de vida
 
 let pontosDeVida = 0
 

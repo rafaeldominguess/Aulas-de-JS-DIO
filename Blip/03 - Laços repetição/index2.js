@@ -1,4 +1,4 @@
-//While, pegando números pares de um array.
+//For, pegando números pares de um array.
 
 const numeros = [0, 1, 2, 3, 5, 7, 10, 4, 20, 12]
 
