@@ -1,7 +1,7 @@
 // Estudo de parâmetros e funções.
 
-function coletarNome(nome){
-    console.log("Seu nome é: " + nome)
+function collectData(name, age, height){
+    console.log(`Your data: ${name}, ${age} years old, ${height} tall`)
 }
 
-coletarNome("Rafael")
+collectData("Rafael", 26, 1.70)
