@@ -34,8 +34,10 @@ const listaDePartidas = [
 ]
 
 for (let i = 0; i < listaDePartidas.length; i++) {
-    let resultado = calcularNivel(listaDePartidas[i][0],listaDePartidas[i][1])
-    console.log(resultado)
+    
+    const [vitorias, derrotas] = listaDePartidas[i];
+    let resultado = calcularNivel(vitorias, derrotas);
+    console.log(resultado);
 }
 
 
