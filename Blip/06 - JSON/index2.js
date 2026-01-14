@@ -25,7 +25,7 @@ function generateData(dataClient) {
 generateData(dataClient)
 
 
-
+console.log("------------")
 //Lista de mercado com nome do produto e valor.
 
 const listaProdutos = [
@@ -43,9 +43,8 @@ console.log("Lista de produtos do mercado: ")
 
 
 function getDataProducts(productName, productPrice) {
-    let nomeProduto = productName
-    let precoProduto = productPrice
-    return `${nomeProduto} R$${precoProduto.toFixed(2)}`
+    return `${productName} R$${productPrice.toFixed(2)}`
+
 }
 
 for (let i = 0; i < listaProdutos.length; i++) {
@@ -55,6 +54,18 @@ for (let i = 0; i < listaProdutos.length; i++) {
 }
 
 
+const valorFinal = listaProdutos
 
+function calcularPrecoTotal(listaProdutos) {
+    let total = 0
 
+    for (let i = 0; i < listaProdutos.length; i++) {
+        const [_, preco] = listaProdutos[i];
+        total += preco
+    }
+    console.log("------------")
+    console.log (`Preço total: R$${total.toFixed(2)}`)
+}
+
+calcularPrecoTotal(valorFinal)
 
