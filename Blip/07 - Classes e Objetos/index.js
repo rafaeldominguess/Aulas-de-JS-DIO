@@ -16,3 +16,10 @@ let massaPizza2 = new formaDeBolo("Sabor da massa é calabresa", "Sabor do reche
 
 console.log(massaPizza)
 console.log(massaPizza2)
+
+
+// Caso eu queira acessar alguma informação dela
+
+console.log("filtro:")
+console.log(massaPizza.saborDaMassa)
+console.log(massaPizza2.saborDoRecheio)
