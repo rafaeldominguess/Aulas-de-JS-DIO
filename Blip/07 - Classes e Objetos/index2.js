@@ -25,4 +25,4 @@ oscar.getData()
 console.log(rafael)  // retorna todos os dados do usuário em JSON
 console.log(gustavo)
 console.log(renan)
-console.log(oscar)
+console.log(oscar) 
